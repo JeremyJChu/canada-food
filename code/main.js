@@ -1,4 +1,5 @@
-d3.json('../data/nations.json', function(nations) {
+var dataUrl = '../data/nations.json';
+d3.json(dataUrl, function(nations) {
 
 		// Create the SVG frame inside chart_area
 		var chart_area = d3.select("#chart_area");
@@ -19,7 +20,7 @@ d3.json('../data/nations.json', function(nations) {
 		frame.attr("height", frame_height);
 
 		// Shift chart and make it smaller than svg
-		canvas.attr("transform", "translate(" + margin.left + "," _margin.top+ ")");
+		canvas.attr("transform", "translate(" + margin.left + "," + _margin.top + ")");
 		canvas.attr("width", canvas_width);
 		canvas.attr("height", canvas_height);
 
@@ -27,7 +28,7 @@ d3.json('../data/nations.json', function(nations) {
 		var circle = canvas.append("circle");
 		circle.attr("r", 40);
 		circle.attr("cx", 40);
-		circle.attr("cy", 50):
+		circle.attr("cy", 50);
 		circle.attr("stroke", 'black');
 		circle.attr("fill", 'green');
 
@@ -54,22 +55,19 @@ d3.json('../data/nations.json', function(nations) {
 		// y-axis
 		canvas.append("g")
 				.attr("class", "y axis")
-				.call(yAxis)
+				.call(yAxis);
 
 		// Adding data
 		var data_canvas = canvas.append("g")
 				.attr("class", "data_canvas");
 
 		var dot = data_canvas.selectAll(".dot")
-				.data(nations, funcion(d){return d.name});
+				.data(nations, function(d){return d.name});
 
 		dot.enter().append("circle").attr("class", "dot")
-				.attr("cx", function(d) {return xScale(d.income[d.income.length-1]); })
-				.attr("cy", function(d) {return yScale(d.lifeExpectancy[d.lifeExpectancy.length-1]); })
-				.attr("r", function(d) { return rScale(d.population[d.population,length-1]); });
+				.attr("cx", function(d) { return xScale(d.income[d.income.length-1]); })
+				.attr("cy", function(d) { return yScale(d.lifeExpectancy[d.lifeExpectancy.length-1]); })
+				.attr("r", function(d) { return rScale(d.population[d.population.length-1]); });
 
-
-
-
-})
+});
 
